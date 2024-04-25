@@ -1,7 +1,9 @@
 const mongoose = require("mongoose");
 
 const foodSchema = new mongoose.Schema(
-    {   
+    {  
+        f_id: {type: String},
+         
         item: { type: String },
 
         veg_or_non_veg: { type: String }
