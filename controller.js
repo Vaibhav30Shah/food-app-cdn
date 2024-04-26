@@ -62,8 +62,6 @@ const getAllMenus = async(req,res) => {
     }
 }
 
-
-
 const getAllMenusByResturant = async(req,res) => {
     try
     {
@@ -84,9 +82,34 @@ const getAllMenusByResturant = async(req,res) => {
         res.json({"status":"error","message":error})
     }
 }
+
+const getFoodItemsByMenuId = async (req, res) => {
+    try {
+      const menuId = req.params.id; // Get the menu ID from the request parameters
+  
+      // Find the menu by its ID
+      const menu = await Menu.findById(menuId);
+  
+      if (menu) {
+        // Get the foodIds from the menu document
+        const foodIds = menu.f_id; // Assuming you have a field called 'f_id' in the Menu model
+  
+        // Find the food items by their IDs
+        const foodItems = await Food.find({ _id: { $in: foodIds } });
+  
+        res.json({ "status": "success", foodItems });
+      } else {
+        res.json({ "status": "error", "message": "No menu found with the provided ID" });
+      }
+    } catch (error) {
+      res.json({ "status": "error", "message": error });
+    }
+  };
+
 module.exports = {
     getAllRestaurants,
     getAllMenus,
     getAllFoods,
-    getAllMenusByResturant
+    getAllMenusByResturant,
+    getFoodItemsByMenuId,
 }
