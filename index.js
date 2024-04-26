@@ -24,6 +24,7 @@ app.get('/', (req, res) => {
 app.get("/api/get-foods",controllers.getAllFoods)
 app.get("/api/get-menus",controllers.getAllMenus)
 app.get("/api/get-restaurants",controllers.getAllRestaurants)
+app.get("/api/get-menus2/:id",controllers.getAllMenusByResturant)
 
 
 // Start the server

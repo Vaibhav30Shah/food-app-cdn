@@ -11,6 +11,9 @@ const menuSchema = new mongoose.Schema(
         rest_id: { type: Number, ref: "Restaurant"},
 
         price: {type: Number}
+      ,
+        id: {type: Number}
+      
     },
     { timestamps: false }
 );

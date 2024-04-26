@@ -62,8 +62,31 @@ const getAllMenus = async(req,res) => {
     }
 }
 
+
+
+const getAllMenusByResturant = async(req,res) => {
+    try
+    {
+        console.log(req.params.id);
+        const menus = await Menu.find({id:req.params.id}).limit(1000);
+
+        if(menus)
+        {
+            res.json({"status":"success",menus})
+        }
+        else
+        {
+            res.json({"status":"error","message":"No data found"})
+        }
+    }
+    catch(error)
+    {
+        res.json({"status":"error","message":error})
+    }
+}
 module.exports = {
     getAllRestaurants,
     getAllMenus,
-    getAllFoods
+    getAllFoods,
+    getAllMenusByResturant
 }
