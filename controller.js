@@ -5,7 +5,7 @@ const Menu = require("./models/Menu");
 const getAllRestaurants = async(req,res) => {
     try
     {
-        const restaurants = await Restaurant.find().limit(1000);
+        const restaurants = await Restaurant.find();
 
         if(restaurants)
         {
@@ -25,7 +25,7 @@ const getAllRestaurants = async(req,res) => {
 const getAllFoods = async(req,res) => {
     try
     {
-        const foods = await Food.find().limit(1000);
+        const foods = await Food.find();
 
         if(foods)
         {
@@ -45,7 +45,7 @@ const getAllFoods = async(req,res) => {
 const getAllMenus = async(req,res) => {
     try
     {
-        const menus = await Menu.find().limit(1000);
+        const menus = await Menu.find();
 
         if(menus)
         {
@@ -66,7 +66,7 @@ const getAllMenusByResturant = async(req,res) => {
     try
     {
         console.log(req.params.id);
-        const menus = await Menu.find({id:req.params.id}).limit(1000);
+        const menus = await Menu.find({id:req.params.id});
 
         if(menus)
         {
