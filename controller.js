@@ -95,7 +95,7 @@ const getAllMenusByResturant = async(req,res) => {
     try
     {
         console.log(req.params.id);//rest id
-        const menus = await Restaurant.find({id:req.params.id});
+        const menus = await Menu.find({id:req.params.id});
 
         if(menus)
         {
