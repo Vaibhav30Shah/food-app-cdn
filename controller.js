@@ -83,32 +83,26 @@ const getAllMenusByResturant = async(req,res) => {
     }
 }
 
-const getFoodItemsByMenuId = async (req, res) => {
-    try {
-      const menuId = req.params.menuId;
-  
-      // Find the menu by its menu_id
-      const menu = await Menu.findOne({ menu_id: menuId });
-  
-      if (menu) {
-        // Get the food ID from the menu document
-        const foodId = menu.f_id;
-  
-        // Find the food item by its f_id
-        const foodItem = await Food.findOne({ f_id: foodId });
-  
-        if (foodItem) {
-          res.json({ "status": "success", foodItem });
-        } else {
-          res.json({ "status": "error", "message": "No food item found with the provided food ID" });
+const getFoodItemsByMenuId = async(req,res) => {
+    try
+    {
+        console.log(req.params.id);
+        const menus = await Menu.find({id:req.params.id});
+
+        if(menus)
+        {
+            res.json({"status":"success",menus})
         }
-      } else {
-        res.json({ "status": "error", "message": "No menu found with the provided menu ID" });
-      }
-    } catch (error) {
-      res.json({ "status": "error", "message": error });
+        else
+        {
+            res.json({"status":"error","message":"No data found"})
+        }
     }
-  };
+    catch(error)
+    {
+        res.json({"status":"error","message":error})
+    }
+}
 
   const getAllRestaurantsByCuisine = async(req,res) => {
     try
