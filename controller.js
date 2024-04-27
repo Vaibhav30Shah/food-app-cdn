@@ -63,7 +63,7 @@ const getAllMenus = async(req,res) => {
 }
 
 //rest ID pass 
-const getAllMenusByResturant = async(req,res) => {
+const getAllFoodsByResturant = async(req,res) => {
     try
     {
         console.log(req.params.id);//rest id
@@ -77,6 +77,33 @@ const getAllMenusByResturant = async(req,res) => {
             
             const foods = await Food.find({f_id:{$in:fids}})
 
+
+            res.json({"status":"success",foods})
+        }
+        else
+        {
+            res.json({"status":"error","message":"No data found"})
+        }
+    }
+    catch(error)
+    {
+        res.json({"status":"error","message":error})
+    }
+}
+
+const getAllMenusByResturant = async(req,res) => {
+    try
+    {
+        console.log(req.params.id);//rest id
+        const menus = await Menu.find({id:req.params.id});
+
+        if(menus)
+        {
+            // let fids = [] 
+            
+            // menus.forEach(m=>fids.push(m.f_id))
+            
+            // const foods = await Food.find({f_id:{$in:fids}})
 
             res.json({"status":"success",foods})
         }
@@ -137,6 +164,7 @@ module.exports = {
     getAllMenus,
     getAllFoods,
     getAllMenusByResturant,
+    getAllFoodsByResturant,
     getFoodItemsByMenuId,
     getAllRestaurantsByCuisine,
 }
