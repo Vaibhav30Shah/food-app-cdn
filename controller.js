@@ -62,15 +62,23 @@ const getAllMenus = async(req,res) => {
     }
 }
 
+//rest ID pass 
 const getAllMenusByResturant = async(req,res) => {
     try
     {
-        console.log(req.params.id);
+        console.log(req.params.id);//rest id
         const menus = await Menu.find({id:req.params.id});
 
         if(menus)
         {
-            res.json({"status":"success",menus})
+            let fids = [] 
+            
+            menus.forEach(m=>fids.push(m.f_id))
+            
+            const foods = await Food.find({f_id:{$in:fids}})
+
+
+            res.json({"status":"success",foods})
         }
         else
         {
