@@ -26,7 +26,7 @@ app.get("/api/get-menus",controllers.getAllMenus)
 app.get("/api/get-restaurants",controllers.getAllRestaurants)
 app.get("/api/get-menus2/:id",controllers.getAllMenusByResturant)
 app.get('/api/menus/:menuId/foods', controllers.getFoodItemsByMenuId);
-
+app.get('/api/get-restaurants-cuisine/:cuisine', controllers.getAllRestaurantsByCuisine);
 
 // Start the server
 const PORT = process.env.PORT || 3000;

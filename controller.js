@@ -109,10 +109,32 @@ const getFoodItemsByMenuId = async (req, res) => {
       res.json({ "status": "error", "message": error });
     }
   };
+
+  const getAllRestaurantsByCuisine = async(req,res) => {
+    try
+    {
+        console.log(req.params.cuisine);
+        const menus = await Menu.find({cuisine:req.params.cuisine});
+
+        if(menus)
+        {
+            res.json({"status":"success",menus})
+        }
+        else
+        {
+            res.json({"status":"error","message":"No data found"})
+        }
+    }
+    catch(error)
+    {
+        res.json({"status":"error","message":error})
+    }
+}
 module.exports = {
     getAllRestaurants,
     getAllMenus,
     getAllFoods,
     getAllMenusByResturant,
     getFoodItemsByMenuId,
+    getAllRestaurantsByCuisine,
 }
