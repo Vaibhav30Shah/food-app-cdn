@@ -114,7 +114,7 @@ const getFoodItemsByMenuId = async (req, res) => {
     try
     {
         console.log(req.params.cuisine);
-        const menus = await Menu.find({cuisine:req.params.cuisine});
+        const menus = await Restaurant.find({cuisine:req.params.cuisine});
 
         if(menus)
         {
