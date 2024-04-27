@@ -75,7 +75,7 @@ const getAllFoodsByResturant = async(req,res) => {
             
             menus.forEach(m=>fids.push(m.f_id))
             
-            const foods = await Food.find({f_id:{$in:fids}})
+            const foods = await Food.find({f_id:{$in:fids},veg_or_non_veg:"Veg"})
 
 
             res.json({"status":"success",foods})
